@@ -1,28 +1,40 @@
 document.addEventListener("DOMContentLoaded", function() {
-  let buttons = this.getElementsByTagName("button");
+  let buttons = document.getElementsByTagName("button");
 
   for (let button of buttons) {
-    button.addEventListener("click", function() {
-      if (this.getAttribute("data-type") === "submit") {
-        alert("You clicked submit!");
-      } else {
-        let gameType = this.getAttribute("data-type");
-        alert(`You clicked $(gameType)`);
-      }
-    })
+      button.addEventListener("click", function() {
+          if (this.getAttribute("data-type") === "submit") {
+              alert("You clicked Submit!");
+          } else {
+              let gameType = this.getAttribute("data-type");
+              runGame(gameType);
+          }
+      });
   }
-})
 
-function runGame() {
-  let num1 = math.floor(math.random() * 25) + 1;
-  let num2 = math.floor(math.random() * 25) + 1;
+  runGame("addition");
+
+});
+
+function runGame(gameType) {
+
+  let num1 = Math.floor(Math.random() * 25) + 1;
+  let num2 = Math.floor(Math.random() * 25) + 1;
+
+  if (gameType === "addition") {
+      displayAdditionQuestion(num1, num2);
+  } else {
+      alert(`Unknown game type: ${gameType}`);
+      throw `Unknown game type: ${gameType}. Aborting!`;
+  }
+
 }
 
-function getAnswer() {
+function checkAnswer() {
 
 }
 
-function calculateAnswer() {
+function calculateCorrectAnswer() {
 
 }
 
@@ -34,14 +46,18 @@ function incrementWrongAnswer() {
 
 }
 
-function displayAdditionalQuestion() {
+function displayAdditionQuestion(operand1, operand2) {
 
+  document.getElementById('operand1').textContent = operand1;
+  document.getElementById('operand2').textContent = operand2;
+  document.getElementById('operator').textContent = "+";
+  
 }
 
 function displaySubtractQuestion() {
 
 }
 
-function displayMultipleQuestion() {
-
+function displayMultiplyQuestion() {
+  
 }
